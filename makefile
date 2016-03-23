@@ -33,10 +33,9 @@ $(DIR_OBJS)/%.o: %.c
 $(DIR_DEPS)/%.dep: %.c
 	@echo "Making $@ ..."
 	@set -e; \
-	@echo " $(RM) $(RMFLAGS) $@.tmp ;" \
 	$(RM) $(RMFLAGS) $@.tmp ; \
 	$(CC) -E -MM $^ > $@.tmp ; \
-	sed 's,\(.*\)\.o[ :]*,objs/\1.o: ,g' < $@.tmp > $@ ; \ 
+	sed 's,\(.*\)\.o[ :]*,objs/\1.o: ,g' < $@.tmp > $@ ; \
 	$(RM) $(RMFLAGS) $@.tmp
 
 clean:
